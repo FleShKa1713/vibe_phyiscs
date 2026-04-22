@@ -115,13 +115,17 @@ const theoryData = {
 
 const useStore = create((set) => ({
   activeGrade: 7, // 7, 8, 9, 10, 11
-  setActiveGrade: (grade) => set({ activeGrade: grade, activeExperiment: 1, view: 'experiment' }),
+  setActiveGrade: (grade) => set({ activeGrade: grade, activeExperiment: 1, view: 'grade-overview' }),
   
-  view: 'home', // 'home' or 'experiment'
+  view: 'home', // 'home', 'experiment', 'grade-overview', 'theory-page'
   setView: (view) => set({ view }),
+
+  activeTheoryExp: 1,
+  setActiveTheoryExp: (exp) => set({ activeTheoryExp: exp, view: 'theory-page' }),
 
   activeExperiment: 1, // 1 або 2
   setActiveExperiment: (exp) => set({ activeExperiment: exp }),
+
 
 
   // Global Toggles

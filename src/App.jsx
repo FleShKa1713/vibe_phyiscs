@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useStore from './store/useStore';
 import ControlPanel from './components/ControlPanel';
 import AITutor from './components/AITutor';
 import TheoryPanel from './components/TheoryPanel';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import Home from './components/Home';
+import GradeOverview from './components/GradeOverview';
+import TheoryPage from './components/TheoryPage';
 import Grade7 from './modules/Grade7';
 import Grade8 from './modules/Grade8';
 import Grade9 from './modules/Grade9';
@@ -26,11 +28,38 @@ function App() {
 
   const t = translations[language];
 
+  // Fix scrolling for non-experiment views
+  useEffect(() => {
+    if (view === 'experiment') {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [view]);
+
   if (view === 'home') {
     return (
       <>
         <LanguageSwitcher />
         <Home />
+      </>
+    );
+  }
+
+  if (view === 'grade-overview') {
+    return (
+      <>
+        <LanguageSwitcher />
+        <GradeOverview />
+      </>
+    );
+  }
+
+  if (view === 'theory-page') {
+    return (
+      <>
+        <LanguageSwitcher />
+        <TheoryPage />
       </>
     );
   }
