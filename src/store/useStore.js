@@ -115,10 +115,14 @@ const theoryData = {
 
 const useStore = create((set) => ({
   activeGrade: 7, // 7, 8, 9, 10, 11
-  setActiveGrade: (grade) => set({ activeGrade: grade, activeExperiment: 1 }),
+  setActiveGrade: (grade) => set({ activeGrade: grade, activeExperiment: 1, view: 'experiment' }),
   
+  view: 'home', // 'home' or 'experiment'
+  setView: (view) => set({ view }),
+
   activeExperiment: 1, // 1 або 2
   setActiveExperiment: (exp) => set({ activeExperiment: exp }),
+
 
   // Global Toggles
   showVectors: true,

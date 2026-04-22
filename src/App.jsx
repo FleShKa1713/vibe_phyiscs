@@ -4,18 +4,36 @@ import ControlPanel from './components/ControlPanel';
 import AITutor from './components/AITutor';
 import TheoryPanel from './components/TheoryPanel';
 import LanguageSwitcher from './components/LanguageSwitcher';
+import Home from './components/Home';
 import Grade7 from './modules/Grade7';
 import Grade8 from './modules/Grade8';
 import Grade9 from './modules/Grade9';
 import Grade10 from './modules/Grade10';
 import Grade11 from './modules/Grade11';
-import { BookOpen, Droplets, Zap, Eye, Rocket, Atom } from 'lucide-react';
+import { BookOpen, Droplets, Zap, Eye, Rocket, Atom, Home as HomeIcon } from 'lucide-react';
 import translations from './locales/translations';
 
 function App() {
-  const { activeGrade, setActiveGrade, activeExperiment, setActiveExperiment, language } = useStore();
+  const { 
+    view, 
+    setView, 
+    activeGrade, 
+    setActiveGrade, 
+    activeExperiment, 
+    setActiveExperiment, 
+    language 
+  } = useStore();
 
   const t = translations[language];
+
+  if (view === 'home') {
+    return (
+      <>
+        <LanguageSwitcher />
+        <Home />
+      </>
+    );
+  }
 
   const renderModule = () => {
     switch (activeGrade) {
@@ -39,6 +57,7 @@ function App() {
   return (
     <div style={{ width: '100vw', height: '100vh', display: 'flex', overflow: 'hidden', backgroundColor: 'var(--bg-color)' }}>
       <LanguageSwitcher />
+      
       {/* Sidebar Navigation */}
       <nav className="glass-panel" style={{
         width: '90px',
@@ -51,9 +70,26 @@ function App() {
         gap: '20px',
         zIndex: 20
       }}>
-        <div style={{ marginBottom: '20px', color: '#fff' }}>
-          <BookOpen size={32} />
-        </div>
+        {/* Home Button */}
+        <button 
+          onClick={() => setView('home')}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: 'var(--text-secondary)',
+            cursor: 'pointer',
+            marginBottom: '10px',
+            transition: 'all 0.3s'
+          }}
+          title="Home"
+        >
+          <div style={{ padding: '12px', borderRadius: '12px' }}>
+            <HomeIcon size={32} />
+          </div>
+        </button>
+
+        <div style={{ width: '60%', height: '1px', background: 'rgba(255,255,255,0.1)', marginBottom: '10px' }} />
+
         {navItems.map(item => (
           <button 
             key={item.grade}

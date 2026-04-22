@@ -121,8 +121,22 @@ const translations = {
       flatMirror: "Плоске дзеркало",
       convexMirror: "Опукле дзеркало",
       concaveMirror: "Увігнуте дзеркало",
+    },
+    landing: {
+      heroTitle: "Інтерактивна Фізика",
+      heroSubtitle: "Досліджуй закони всесвіту через захоплюючі симуляції. Від Архімеда до квантової фізики — все в одному місці.",
+      startBtn: "Розпочати навчання",
+      gradesTitle: "Оберіть свій рівень",
+      grade7Desc: "Механіка, рух та тиск у рідинах.",
+      grade8Desc: "Електрика, теплота та магніти.",
+      grade9Desc: "Світло, хвилі та оптика.",
+      grade10Desc: "Динаміка та молекулярна фізика.",
+      grade11Desc: "Атомна фізика та індукція.",
+      footerText: "Створено для майбутніх вчених",
+      welcome: "Вітаємо у Physics Playground!"
     }
   },
+
   cs: {
     grades: {
       7: '7. Třída',
@@ -245,9 +259,23 @@ const translations = {
       flatMirror: "Rovinné zrcadlo",
       convexMirror: "Vypuklé zrcadlo",
       concaveMirror: "Duté zrcadlo",
+    },
+    landing: {
+      heroTitle: "Interaktivní Fyzika",
+      heroSubtitle: "Objevujte zákony vesmíru prostřednictvím fascinujících simulací. Od Archimeda po kvantovou fyziku — vše na jednom místě.",
+      startBtn: "Začít se učit",
+      gradesTitle: "Vyberte si svou úroveň",
+      grade7Desc: "Mechanika, pohyb a tlak v kapalinách.",
+      grade8Desc: "Elektřina, teplo a magnety.",
+      grade9Desc: "Světlo, vlny a optika.",
+      grade10Desc: "Dynamika a molekulární fyzika.",
+      grade11Desc: "Atomová fyzika a indukce.",
+      footerText: "Vytvořeno pro budoucí vědce",
+      welcome: "Vítejte ve Physics Playground!"
     }
   }
 };
+
 
 export const theoryContent = {
   uk: {
