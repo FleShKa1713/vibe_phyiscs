@@ -6,7 +6,7 @@ import { Play, BookOpen, ArrowLeft } from 'lucide-react';
 export default function GradeOverview() {
   const { activeGrade, setView, setActiveExperiment, setActiveTheoryExp, language } = useStore();
   const t = translations[language];
-  const experiments = [1, 2, 3, 4];
+  const experiments = Object.keys(t.expNames[activeGrade] || {}).map(Number);
 
   return (
     <div className="overview-container">

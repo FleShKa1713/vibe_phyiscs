@@ -3,20 +3,27 @@ import useStore from '../store/useStore';
 import translations from '../locales/translations';
 
 export default function Home() {
-  const { setView, setActiveGrade, language } = useStore();
+  const { setActiveGrade, language } = useStore();
   const t = translations[language].landing;
-  const grades = [7, 8, 9, 10, 11];
+  const zsGrades = [6, 7, 8, 9];
+  const ssGrades = [10, 11];
 
   const getGradeDesc = (grade) => {
-    switch(grade) {
-      case 7: return t.grade7Desc;
-      case 8: return t.grade8Desc;
-      case 9: return t.grade9Desc;
-      case 10: return t.grade10Desc;
-      case 11: return t.grade11Desc;
-      default: return "";
-    }
+    return t[`grade${grade}Desc`] || "";
   };
+
+  const renderCard = (grade) => (
+    <div 
+      key={grade} 
+      className="grade-card"
+      onClick={() => setActiveGrade(grade)}
+    >
+      <div className="grade-number">{grade <= 9 ? grade : `${grade - 9}`}</div>
+      <h3 className="grade-title">{translations[language].grades[grade]}</h3>
+      <p className="grade-desc">{getGradeDesc(grade)}</p>
+      <div className="card-arrow">→</div>
+    </div>
+  );
 
   return (
     <div className="home-container">
@@ -27,10 +34,7 @@ export default function Home() {
           <p className="hero-subtitle">{t.heroSubtitle}</p>
           <button 
             className="cta-button"
-            onClick={() => {
-               setActiveGrade(7);
-               setView('experiment');
-            }}
+            onClick={() => setActiveGrade(6)}
           >
             {t.startBtn}
           </button>
@@ -42,22 +46,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Grades Grid */}
+      {/* ZŠ Section */}
       <section className="grades-section">
         <h2 className="section-title">{t.gradesTitle}</h2>
+        <h3 className="school-label zs-label">{t.zsTitle}</h3>
         <div className="grades-grid">
-          {grades.map(grade => (
-            <div 
-              key={grade} 
-              className="grade-card"
-              onClick={() => setActiveGrade(grade)}
-            >
-              <div className="grade-number">{grade}</div>
-              <h3 className="grade-title">{translations[language].grades[grade]}</h3>
-              <p className="grade-desc">{getGradeDesc(grade)}</p>
-              <div className="card-arrow">→</div>
-            </div>
-          ))}
+          {zsGrades.map(renderCard)}
+        </div>
+
+        <h3 className="school-label ss-label">{t.ssTitle}</h3>
+        <div className="grades-grid ss-grid">
+          {ssGrades.map(renderCard)}
         </div>
       </section>
 
@@ -72,11 +71,12 @@ export default function Home() {
           color: white;
           font-family: 'Outfit', 'Inter', sans-serif;
           overflow-x: hidden;
+          overflow-y: auto;
           scroll-behavior: smooth;
         }
 
         .hero {
-          height: 80vh;
+          min-height: 80vh;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -142,42 +142,41 @@ export default function Home() {
           animation: float 10s infinite ease-in-out;
         }
 
-        .sphere-1 {
-          width: 300px; height: 300px;
-          background: #38bdf8;
-          top: -50px; right: -50px;
-        }
-
-        .sphere-2 {
-          width: 200px; height: 200px;
-          background: #818cf8;
-          bottom: -20px; left: -20px;
-          animation-delay: -2s;
-        }
-
-        .sphere-3 {
-          width: 150px; height: 150px;
-          background: #c084fc;
-          top: 50%; left: 50%;
-          animation-delay: -5s;
-        }
+        .sphere-1 { width: 300px; height: 300px; background: #38bdf8; top: -50px; right: -50px; }
+        .sphere-2 { width: 200px; height: 200px; background: #818cf8; bottom: -20px; left: -20px; animation-delay: -2s; }
+        .sphere-3 { width: 150px; height: 150px; background: #c084fc; top: 50%; left: 50%; animation-delay: -5s; }
 
         .grades-section {
-          padding: 8rem 10%;
+          padding: 6rem 10%;
           background: #020617;
         }
 
         .section-title {
           font-size: 2.5rem;
           text-align: center;
-          margin-bottom: 4rem;
+          margin-bottom: 2rem;
           font-weight: 700;
         }
 
+        .school-label {
+          font-size: 1.3rem;
+          font-weight: 700;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          margin-bottom: 2rem;
+          padding-left: 5px;
+          border-left: 4px solid #38bdf8;
+          padding: 4px 12px;
+        }
+
+        .zs-label { color: #38bdf8; border-color: #38bdf8; }
+        .ss-label { color: #a78bfa; border-color: #a78bfa; margin-top: 4rem; }
+
         .grades-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
           gap: 2rem;
+          margin-bottom: 1rem;
         }
 
         .grade-card {
@@ -208,9 +207,7 @@ export default function Home() {
           transition: opacity 0.4s;
         }
 
-        .grade-card:hover::before {
-          opacity: 1;
-        }
+        .grade-card:hover::before { opacity: 1; }
 
         .grade-number {
           font-size: 4rem;
@@ -228,29 +225,10 @@ export default function Home() {
           color: #38bdf8;
         }
 
-        .grade-title {
-          font-size: 1.5rem;
-          font-weight: 700;
-          margin-bottom: 1rem;
-          position: relative;
-        }
-
-        .grade-desc {
-          color: #94a3b8;
-          line-height: 1.6;
-          margin-bottom: 2rem;
-          position: relative;
-        }
-
-        .card-arrow {
-          font-size: 1.5rem;
-          color: #38bdf8;
-          transition: transform 0.3s;
-        }
-
-        .grade-card:hover .card-arrow {
-          transform: translateX(10px);
-        }
+        .grade-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; position: relative; }
+        .grade-desc { color: #94a3b8; line-height: 1.6; margin-bottom: 2rem; position: relative; }
+        .card-arrow { font-size: 1.5rem; color: #38bdf8; transition: transform 0.3s; }
+        .grade-card:hover .card-arrow { transform: translateX(10px); }
 
         .home-footer {
           padding: 4rem 10%;
@@ -274,6 +252,7 @@ export default function Home() {
           .hero { padding: 0 5%; flex-direction: column; justify-content: center; text-align: center; }
           .hero-visual { display: none; }
           .hero-content { margin-top: 5rem; }
+          .grades-section { padding: 4rem 5%; }
         }
       `}</style>
     </div>

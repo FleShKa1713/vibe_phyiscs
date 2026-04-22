@@ -5,6 +5,7 @@ import translations from '../locales/translations';
 export default function ControlPanel() {
   const { 
     activeGrade, activeExperiment,
+    grade6Params, setGrade6Params,
     grade7Params, setGrade7Params,
     grade8Params, setGrade8Params,
     grade9Params, setGrade9Params,
@@ -18,6 +19,32 @@ export default function ControlPanel() {
 
   const renderSliders = () => {
     switch (activeGrade) {
+      case 6:
+        if (activeExperiment === 1) {
+          return (
+            <>
+              <div className="slider-group">
+                <label>{language === 'uk' ? 'Температура' : 'Teplota'}: {grade6Params.matterTemperature} °C</label>
+                <input type="range" min="-50" max="500" step="5" value={grade6Params.matterTemperature} 
+                  onChange={(e) => setGrade6Params({ matterTemperature: parseFloat(e.target.value) })} />
+              </div>
+            </>
+          );
+        } else if (activeExperiment === 3) {
+          return (
+            <>
+              <div className="slider-group">
+                <label>{language === 'uk' ? 'Другий магніт' : 'Druhý magnet'}: {grade6Params.magnet2Enabled ? 'ON' : 'OFF'}</label>
+                <button className="toggle-btn" onClick={() => setGrade6Params({ magnet2Enabled: !grade6Params.magnet2Enabled })}>
+                  {grade6Params.magnet2Enabled 
+                    ? (language === 'uk' ? 'Сховати' : 'Skrýt') 
+                    : (language === 'uk' ? 'Показати' : 'Zobrazit')}
+                </button>
+              </div>
+            </>
+          );
+        }
+        return null;
       case 7:
         if (activeExperiment === 1) {
           return (

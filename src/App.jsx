@@ -7,12 +7,13 @@ import LanguageSwitcher from './components/LanguageSwitcher';
 import Home from './components/Home';
 import GradeOverview from './components/GradeOverview';
 import TheoryPage from './components/TheoryPage';
+import Grade6 from './modules/Grade6';
 import Grade7 from './modules/Grade7';
 import Grade8 from './modules/Grade8';
 import Grade9 from './modules/Grade9';
 import Grade10 from './modules/Grade10';
 import Grade11 from './modules/Grade11';
-import { BookOpen, Droplets, Zap, Eye, Rocket, Atom, Home as HomeIcon } from 'lucide-react';
+import { Beaker, Droplets, Zap, Eye, Rocket, Atom, Home as HomeIcon } from 'lucide-react';
 import translations from './locales/translations';
 
 function App() {
@@ -66,16 +67,18 @@ function App() {
 
   const renderModule = () => {
     switch (activeGrade) {
+      case 6: return <Grade6 />;
       case 7: return <Grade7 />;
       case 8: return <Grade8 />;
       case 9: return <Grade9 />;
       case 10: return <Grade10 />;
       case 11: return <Grade11 />;
-      default: return <Grade7 />;
+      default: return <Grade6 />;
     }
   };
 
   const navItems = [
+    { grade: 6, label: t.grades[6], icon: <Beaker size={24} /> },
     { grade: 7, label: t.grades[7], icon: <Droplets size={24} /> },
     { grade: 8, label: t.grades[8], icon: <Zap size={24} /> },
     { grade: 9, label: t.grades[9], icon: <Eye size={24} /> },
@@ -165,7 +168,7 @@ function App() {
           display: 'flex',
           gap: '10px'
         }}>
-          {[1, 2, 3, 4].map(num => (
+          {Object.keys(t.expNames[activeGrade] || {}).map(num => Number(num)).map(num => (
             <button 
               key={num}
               className="glass-panel"
