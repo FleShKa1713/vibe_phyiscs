@@ -114,7 +114,7 @@ const theoryData = {
 };
 
 const useStore = create((set) => ({
-  activeGrade: 7, // 7, 8, 9, 10, 11
+  activeGrade: 6, // 6, 7, 8, 9, 10, 11
   setActiveGrade: (grade) => set({ activeGrade: grade, activeExperiment: 1, view: 'grade-overview' }),
   
   view: 'home', // 'home', 'experiment', 'grade-overview', 'theory-page'
@@ -139,6 +139,16 @@ const useStore = create((set) => ({
   theoryOpen: false,
   toggleTheory: () => set((state) => ({ theoryOpen: !state.theoryOpen })),
   theoryData: theoryData,
+
+  // 6 Клас параметри (ZŠ 6. třída)
+  grade6Params: {
+    matterTemperature: 20,
+    selectedObject: 'none',
+    magnet2Enabled: true,
+  },
+  setGrade6Params: (params) => set((state) => ({ 
+    grade6Params: { ...state.grade6Params, ...params } 
+  })),
 
   // 7 Клас параметри
   grade7Params: {

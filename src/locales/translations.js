@@ -1,20 +1,28 @@
 const translations = {
   uk: {
     grades: {
-      7: '7 Клас',
-      8: '8 Клас',
-      9: '9 Клас',
-      10: '10 Клас',
-      11: '11 Клас'
+      6: 'ZS 6 Клас',
+      7: 'ZS 7 Клас',
+      8: 'ZS 8 Клас',
+      9: 'ZS 9 Клас',
+      10: 'SS 1 Курс',
+      11: 'SS 2 Курс'
     },
     expNames: {
+      6: { 1: 'Будова речовини', 2: 'Густина та Об\'єм', 3: 'Магнітні властивості' },
       7: { 1: 'Закон Архімеда', 2: 'Рівномірний рух', 3: 'Важіль', 4: 'Закон Паскаля' },
       8: { 1: 'Електричне коло', 2: 'Агрегатні стани', 3: 'Теплопровідність', 4: 'Магнітне поле' },
       9: { 1: 'Оптика (Лінзи)', 2: 'Хвилі', 3: 'Відбивання', 4: 'Ефект Доплера' },
       10: { 1: 'Динаміка', 2: 'Ідеальний газ', 3: 'Балістика', 4: 'P-V Діаграма' },
       11: { 1: 'Сила Лоренца', 2: 'Радіоактивність', 3: 'Індукція Фарадея', 4: 'Фотоефект' },
     },
+
     expHints: {
+      6: {
+        1: '\u{1F52C} Змінюйте температуру, щоб побачити як поводяться молекули у різних агрегатних станах.',
+        2: '\u{1F4CF} Обирайте предмети та кидайте їх у мензурку. Зверніть увагу на зміну рівня води.',
+        3: '\u{1F9F2} Перетягуйте магніти та спостерігайте за поведінкою залізних ошурок.',
+      },
       7: { 
         1: '🖱 Перетягніть брусок у воду. Змінюйте густину тіла та рідини.', 
         2: '🚗 Спостерігайте за графіком S(t). Змінюйте швидкість під час руху!',
@@ -127,6 +135,9 @@ const translations = {
       heroSubtitle: "Досліджуй закони всесвіту через захоплюючі симуляції. Від Архімеда до квантової фізики — все в одному місці.",
       startBtn: "Розпочати навчання",
       gradesTitle: "Оберіть свій рівень",
+      zsTitle: "Základní škola",
+      ssTitle: "Střední škola",
+      grade6Desc: "Будова речовини, густина та магніти.",
       grade7Desc: "Механіка, рух та тиск у рідинах.",
       grade8Desc: "Електрика, теплота та магніти.",
       grade9Desc: "Світло, хвилі та оптика.",
@@ -139,13 +150,15 @@ const translations = {
 
   cs: {
     grades: {
-      7: '7. Třída',
-      8: '8. Třída',
-      9: '9. Třída',
-      10: '10. Třída',
-      11: '11. Třída'
+      6: 'ZŠ 6. Třída',
+      7: 'ZŠ 7. Třída',
+      8: 'ZŠ 8. Třída',
+      9: 'ZŠ 9. Třída',
+      10: 'SŠ 1. Ročník',
+      11: 'SŠ 2. Ročník'
     },
     expNames: {
+      6: { 1: 'Stavba látek', 2: 'Hustota a objem', 3: 'Magnetické vlastnosti' },
       7: { 1: 'Archimedův zákon', 2: 'Rovnoměrný pohyb', 3: 'Páka', 4: 'Pascalův zákon' },
       8: { 1: 'Elektrický obvod', 2: 'Skupenství látek', 3: 'Tepelná vodivost', 4: 'Magnetické pole' },
       9: { 1: 'Optika (Čočky)', 2: 'Vlny', 3: 'Odraz', 4: 'Dopplerův jev' },
@@ -153,6 +166,11 @@ const translations = {
       11: { 1: 'Lorentzova síla', 2: 'Radioaktivita', 3: 'Faradayova indukce', 4: 'Fotoelektrický jev' },
     },
     expHints: {
+      6: {
+        1: '🔬 Měňte teplotu a sledujte chování molekul v různých skupenstvích.',
+        2: '📏 Vyberte předměty a vhoďte je do odměrného válce. Sledujte změnu hladiny vody.',
+        3: '🧲 Přetahujte magnety a sledujte chování železných pilin.',
+      },
       7: { 
         1: '🖱 Přetáhněte kvádr do vody. Měňte hustotu tělesa a kapaliny.', 
         2: '🚗 Sledujte graf S(t). Měňte rychlost během pohybu!',
@@ -265,6 +283,9 @@ const translations = {
       heroSubtitle: "Objevujte zákony vesmíru prostřednictvím fascinujících simulací. Od Archimeda po kvantovou fyziku — vše na jednom místě.",
       startBtn: "Začít se učit",
       gradesTitle: "Vyberte si svou úroveň",
+      zsTitle: "Základní škola",
+      ssTitle: "Střední škola",
+      grade6Desc: "Stavba látek, hustota a magnety.",
       grade7Desc: "Mechanika, pohyb a tlak v kapalinách.",
       grade8Desc: "Elektřina, teplo a magnety.",
       grade9Desc: "Světlo, vlny a optika.",
@@ -279,6 +300,33 @@ const translations = {
 
 export const theoryContent = {
   uk: {
+    6: {
+      1: {
+        title: "Будова речовини (Агрегатні стани)",
+        formulas: [
+          { name: "Кінетична енергія молекули", expr: "E_k = (3/2) · k · T" }
+        ],
+        description: "Речовина складається з молекул і атомів, що знаходяться у постійному русі. У твердому тілі частинки розташовані впорядковано (кристалічна решітка) і лише коливаються. У рідині частинки вільно переміщуються, але тримаються близько одна до одної. У газі частинки рухаються хаотично з великою швидкістю, заповнюючи весь об'єм. Температура — це міра середньої кінетичної енергії частинок. Броунівський рух — це видимий результат ударів дрібних молекул по більшій частинці.",
+        wiki: "https://uk.wikipedia.org/wiki/Агрегатний_стан_речовини"
+      },
+      2: {
+        title: "Густина та Об'єм",
+        formulas: [
+          { name: "Густина", expr: "ρ = m / V" },
+          { name: "Об'єм через витіснення", expr: "V_тіла = V₂ - V₁" }
+        ],
+        description: "Густина — це фізична величина, що показує, яка маса речовини міститься в одиниці об'єму. Для вимірювання об'єму тіла неправильної форми використовують метод витіснення: занурюють тіло у воду і вимірюють різницю рівнів. Знаючи масу (з терезів) та об'єм, можна обчислити густину.",
+        wiki: "https://uk.wikipedia.org/wiki/Густина"
+      },
+      3: {
+        title: "Магнітні властивості",
+        formulas: [
+          { name: "Взаємодія полюсів", expr: "Однойменні полюси відштовхуються, різнойменні — притягуються" }
+        ],
+        description: "Кожен магніт має два полюси: північний (N) та південний (S). Навколо магніту існує магнітне поле, яке можна візуалізувати за допомогою залізних ошурок. Ошурки вишикуються вздовж силових ліній магнітного поля, які виходять з північного полюса і входять у південний.",
+        wiki: "https://uk.wikipedia.org/wiki/Магнітне_поле"
+      }
+    },
     7: {
       1: {
         title: "Закон Архімеда",
@@ -454,6 +502,33 @@ export const theoryContent = {
     }
   },
   cs: {
+    6: {
+      1: {
+        title: "Stavba látek (Skupenství)",
+        formulas: [
+          { name: "Kinetická energie molekuly", expr: "E_k = (3/2) · k · T" }
+        ],
+        description: "Látky se skládají z molekul a atomů v neustálém pohybu. V pevné látce jsou částice uspořádány v krystalové mřížce a pouze kmitají. V kapalině se volně pohybují, ale drží blízko sebe. V plynu se pohybují chaoticky vysokou rychlostí a vyplňují celý objem. Teplota je míra průměrné kinetické energie částic. Brownův pohyb je viditelný důsledek nárazů malých molekul do větší částice.",
+        wiki: "https://cs.wikipedia.org/wiki/Skupenství"
+      },
+      2: {
+        title: "Hustota a objem",
+        formulas: [
+          { name: "Hustota", expr: "ρ = m / V" },
+          { name: "Objem vytlačením", expr: "V_tělesa = V₂ - V₁" }
+        ],
+        description: "Hustota je fyzikální veličina, která udává, jaká hmotnost látky je obsažena v jednotce objemu. Pro měření objemu tělesa nepravidelného tvaru se používá metoda vytlačení: těleso se ponoří do vody a změří se rozdíl hladin. Ze znalosti hmotnosti (z vah) a objemu lze vypočítat hustotu.",
+        wiki: "https://cs.wikipedia.org/wiki/Hustota"
+      },
+      3: {
+        title: "Magnetické vlastnosti",
+        formulas: [
+          { name: "Interakce pólů", expr: "Stejnojmenné póly se odpuzují, různojmenné přitahují" }
+        ],
+        description: "Každý magnet má dva póly: severní (N) a jižní (S). V okolí magnetu existuje magnetické pole, které lze vizualizovat pomocí železných pilin. Piliny se seřadí podél siločar magnetického pole, které vycházejí ze severního pólu a vcházejí do jižního.",
+        wiki: "https://cs.wikipedia.org/wiki/Magnetické_pole"
+      }
+    },
     7: {
       1: {
         title: "Archimedův zákon",
